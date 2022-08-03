@@ -4,6 +4,7 @@ const dotenv = require("dotenv")
 const userRoute = require("./routes/users")
 const pinRoute = require("./routes/pins")
 const app = express();
+const cors = require('cors');
 
 dotenv.config();
 
@@ -15,6 +16,8 @@ mongoose.connect(process.env.MONGO_URL).then(()=>{
 .catch((err)=>console.log(err));
 //.
 
+
+app.use(cors())
 app.use("/api/users", userRoute);
 app.use("/api/pins", pinRoute);
 
